@@ -1,0 +1,41 @@
+---
+const footerLinks = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Nosotros", href: "#nosotros" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Contacto", href: "#contacto" },
+];
+---
+
+<footer class="site-footer">
+  <div class="footer-gridline" aria-hidden="true"></div>
+  <div class="footer-inner">
+    <div class="footer-main" data-reveal>
+      <a class="brand brand--footer" href="#inicio" aria-label="TICLAT, ir al inicio">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
+        <span class="brand-type"><strong>TICLAT</strong><small>ingeniería &amp; infraestructura</small></span>
+      </a>
+      <p>Infraestructura que hace posible cada proyecto.</p>
+      <a class="footer-email" href="#contacto">Hablemos de tu proyecto <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <div class="footer-column" data-reveal>
+      <p class="footer-label">Explora</p>
+      <nav aria-label="Enlaces del footer">
+        {footerLinks.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+    </div>
+
+    <div class="footer-column" data-reveal>
+      <p class="footer-label">TICLAT S.A.S.</p>
+      <p class="footer-copy">Tecnología Infraestructura y Comunicaciones Latorre S.A.S.</p>
+      <p class="footer-copy">Bogotá D.C. · Colombia<br />NIT 900858320-1</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© <span data-current-year>2026</span> TICLAT S.A.S. Todos los derechos reservados.</span>
+    <span>Ingeniería · Infraestructura · Ejecución · Confianza</span>
+  </div>
+</footer>

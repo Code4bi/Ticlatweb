@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+src/assets/images/ticlat-hero.png
+src/assets/images/ticlat-retail.png
+src/assets/images/ticlat-engineering.png
+src/assets/images/ticlat-space.png

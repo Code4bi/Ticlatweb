@@ -5,42 +5,52 @@ import heroImage from "../assets/images/ticlat-hero.jpg";
 import retailImage from "../assets/images/ticlat-retail.jpg";
 import engineeringImage from "../assets/images/ticlat-engineering.jpg";
 import spaceImage from "../assets/images/ticlat-space.jpg";
+import installationsImage from "../assets/images/ticlat-installations.jpg";
+import networkImage from "../assets/images/ticlat-network.jpg";
+import maintenanceImage from "../assets/images/ticlat-maintenance.jpg";
+import teamImage from "../assets/images/ticlat-team.jpg";
 
 const services = [
   {
     number: "01",
     title: "Instalaciones eléctricas",
     text: "Ejecutamos infraestructura eléctrica para proyectos comerciales, empresariales e industriales, desde la canalización hasta la puesta en funcionamiento.",
+    image: installationsImage,
     icon: "M12 3v18M5 7h14M5 17h14M7 7v10M17 7v10",
   },
   {
     number: "02",
     title: "Infraestructura para retail",
     text: "Acompañamos adecuaciones, aperturas y remodelaciones, coordinando la infraestructura que cada espacio necesita para entrar en operación.",
+    image: retailImage,
     icon: "M4 20V8l8-5 8 5v12M8 20v-6h8v6M3 20h18",
   },
   {
     number: "03",
     title: "Redes y cableado",
     text: "Implementamos canalizaciones, bandejas, cableado e infraestructura física para redes de comunicación y datos.",
+    image: networkImage,
     icon: "M5 12h14M12 5v14M7 7l10 10M17 7 7 17",
   },
   {
     number: "04",
     title: "Ingeniería y planeación",
     text: "Analizamos requerimientos, planos, materiales y condiciones de ejecución para transformar necesidades en proyectos organizados.",
+    image: engineeringImage,
     icon: "M5 19 19 5M6 6h.01M18 18h.01M7 17h10M7 7h4",
   },
   {
     number: "05",
     title: "Adecuaciones y mantenimiento",
     text: "Intervenimos, ampliamos, reorganizamos y mantenemos infraestructura para conservar los espacios seguros y operativos.",
+    image: maintenanceImage,
     icon: "M14.5 6.5a4 4 0 0 0-5 5L4 17l3 3 5.5-5.5a4 4 0 0 0 5-5L15 12l-3-3 2.5-2.5Z",
   },
   {
     number: "06",
     title: "Acompañamiento de proyectos",
     text: "Coordinamos las etapas de ejecución con seguimiento técnico, control de actividades y comunicación permanente.",
+    image: teamImage,
     icon: "M4 6h16M4 12h16M4 18h10M8 3v6M16 9v6M10 15v6",
   },
 ];
@@ -152,10 +162,15 @@ const process = [
       <div class="service-grid">
         {services.map((service) => (
           <article class="service-card" data-reveal>
-            <div class="service-card__top"><span class="service-card__number">{service.number}</span><span class="service-card__arrow" aria-hidden="true">↗</span></div>
-            <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={service.icon} /></svg>
-            <h3>{service.title}</h3>
-            <p>{service.text}</p>
+            <div class="service-card__media">
+              <Image src={service.image} alt={service.title} widths={[480, 720]} sizes="(max-width: 620px) 100vw, (max-width: 980px) 50vw, 33vw" format="webp" quality={78} loading="lazy" />
+            </div>
+            <div class="service-card__body">
+              <div class="service-card__top"><span class="service-card__number">{service.number}</span><span class="service-card__arrow" aria-hidden="true">↗</span></div>
+              <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={service.icon} /></svg>
+              <h3>{service.title}</h3>
+              <p>{service.text}</p>
+            </div>
           </article>
         ))}
       </div>

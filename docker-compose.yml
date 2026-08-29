@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Canonical origin baked into the build (canonical tags, og:url).
+        # Override from Dokploy's Environment tab.
+        SITE_URL: ${SITE_URL:-https://ticlat.com}
+    restart: unless-stopped
+    # No published ports: Traefik reaches the container over the shared
+    # dokploy-network and terminates TLS in front of it.
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true

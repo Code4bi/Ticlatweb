@@ -1,5 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -12 640 640" role="img" aria-label="TICLAT">
-  <title>TICLAT</title>
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 628 616"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
   <polygon points="307.5 0 407 99.5 307.5 199 208 99.5" fill="#6fc8f0"/>
   <polygon points="203 104 302.5 203.5 203 303 103.5 203.5" fill="#126eb1"/>
   <polygon points="425 116 511 202 425 288 339 202" fill="#cd1a54"/>

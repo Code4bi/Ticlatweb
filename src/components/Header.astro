@@ -1,4 +1,6 @@
 ---
+import BrandMark from "./BrandMark.astro";
+
 const navItems = [
   { label: "Inicio", href: "#inicio" },
   { label: "Nosotros", href: "#nosotros" },
@@ -10,7 +12,7 @@ const navItems = [
 <header class="site-header" data-site-header>
   <div class="nav-shell">
     <a class="brand" href="#inicio" aria-label="TICLAT, ir al inicio">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
+      <BrandMark class="brand-mark" />
       <span class="brand-type"><strong>TICLAT</strong><small>ingeniería &amp; infraestructura</small></span>
     </a>
 

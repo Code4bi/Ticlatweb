@@ -1,4 +1,6 @@
 ---
+import BrandMark from "./BrandMark.astro";
+
 const footerLinks = [
   { label: "Inicio", href: "#inicio" },
   { label: "Nosotros", href: "#nosotros" },
@@ -13,7 +15,7 @@ const footerLinks = [
   <div class="footer-inner">
     <div class="footer-main" data-reveal>
       <a class="brand brand--footer" href="#inicio" aria-label="TICLAT, ir al inicio">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
+        <BrandMark class="brand-mark" />
         <span class="brand-type"><strong>TICLAT</strong><small>ingeniería &amp; infraestructura</small></span>
       </a>
       <p>Infraestructura que hace posible cada proyecto.</p>

@@ -1,0 +1,25 @@
+# Build artifacts and local dependencies
+node_modules
+dist
+.astro
+
+# VCS and tooling
+.git
+.gitignore
+.github
+.vscode
+.idea
+
+# Docker files themselves
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Local environment and logs
+.env
+.env.*
+npm-debug.log*
+*.log
+
+# OS noise
+.DS_Store

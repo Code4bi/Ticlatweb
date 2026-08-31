@@ -1,37 +1,37 @@
-# Ticlatweb
+# TICLAT Web
 
-Monorepo con los proyectos de TICLAT S.A.S. Cada carpeta de primer nivel es una
-aplicación independiente, con su propio `Dockerfile` y `docker-compose.yml`, y se
-despliega como un servicio separado en Dokploy.
+Landing corporativa de TICLAT S.A.S. construida con Astro.
 
-## Proyectos
-
-| Carpeta | Proyecto | Dominio |
-|---|---|---|
-| [`web/`](web/) | Landing corporativa (Astro, sitio estático) | `ticlat.com` |
-
-## Despliegue en Dokploy
-
-Cada proyecto se crea como un servicio **Compose** propio, apuntando el
-**Compose Path** a su carpeta:
-
-```
-web/docker-compose.yml
-```
-
-Las rutas relativas dentro de cada `docker-compose.yml` se resuelven contra la
-carpeta que lo contiene, así que cada proyecto construye su propio contexto sin
-tocar a los demás.
-
-Los servicios comparten la red externa `dokploy-network` para que Traefik los
-enrute y termine TLS.
-
-## Trabajar en un proyecto
+## Desarrollo local
 
 ```bash
-cd web
 npm install
 npm run dev
 ```
 
-Consulta el README de cada carpeta para sus detalles particulares.
+## Build de producción
+
+```bash
+npm run build
+npm run preview
+```
+
+La página usa Montserrat para titulares y navegación, Libre Franklin para textos, y genera variantes WebP responsive mediante `astro:assets`.
+
+## Deploy con Docker (Dokploy)
+
+La imagen es multi-stage: Node compila el sitio estático y nginx sirve `dist/`.
+
+```bash
+docker build --build-arg SITE_URL=https://tu-dominio.com -t ticlat-web .
+docker run --rm -p 8080:80 ticlat-web
+```
+
+- Puerto del contenedor: `80`.
+- Health check: `GET /healthz`.
+- `SITE_URL` es una variable **de build**, no de runtime: Astro la incrusta en
+  las URLs canónicas y `og:url` al compilar. Cambiarla exige reconstruir la
+  imagen.
+
+En Dokploy: tipo de aplicación **Dockerfile**, puerto `80`, y `SITE_URL`
+declarada como variable disponible en tiempo de build.

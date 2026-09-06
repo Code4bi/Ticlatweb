@@ -4,13 +4,24 @@ interface Props {
 }
 
 const { class: className } = Astro.props;
+
+// The mark is rendered more than once per page (header + footer), so the
+// gradient ids have to be unique or the second instance re-uses the first
+// definition and both marks fall out of sync.
+const uid = `tl-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
 <!--
-  Measured from the source artwork. The six blue tiles sit on a regular
-  45-degree lattice; the three crimson ones are squares rotated by their own
-  angle (-39.6, -41.8, -25.1), tumbling away from the block. Drawing them as
-  diamonds flattens exactly what the logo depicts.
+  Isotipo TICLAT — Manual de Marca 2026.
+
+  Geometry measured from the source artwork: the six blue tiles sit on a regular
+  45-degree lattice; the three red ones are squares rotated by their own angle
+  (-39.6, -41.8, -25.1), tumbling away from the block. Drawing them as diamonds
+  flattens exactly what the logo depicts.
+
+  Tones follow the manual palette — each tile fades between two of the four
+  brand colours: #4eaae6 (azul claro), #146bc1 (azul), #2d4794 (azul profundo)
+  and #9f0a09 (rojo).
 -->
 <svg
   class={className}
@@ -19,13 +30,36 @@ const { class: className } = Astro.props;
   aria-hidden="true"
   focusable="false"
 >
-  <polygon points="306.5 0.5 405.5 98.5 306.5 197.5 208.5 98.5" fill="#70c9f1"/>
-  <polygon points="202.5 104.5 302.5 202.5 202.5 301.5 104.5 202.5" fill="#126eb1"/>
-  <polygon points="98.5 208.5 198.5 306.5 98.5 405.5 0.5 306.5" fill="#1268a5"/>
-  <polygon points="308.5 209.5 407.5 308.5 308.5 407.5 209.5 308.5" fill="#62b2d5"/>
-  <polygon points="204.5 313.5 303.5 412.5 204.5 511.5 105.5 412.5" fill="#10609b"/>
-  <polygon points="308.5 417.5 407.5 516.5 308.5 615.5 209.5 516.5" fill="#569bba"/>
-  <polygon points="432.5 116.5 510.5 209.5 416.5 287.5 339.5 193.5" fill="#cd1a54"/>
-  <polygon points="430.5 335.5 508.5 421.5 421.5 497.5 345.5 411.5" fill="#b4174a"/>
-  <polygon points="581.5 242.5 627.5 338.5 530.5 383.5 485.5 287.5" fill="#c01951"/>
+  <defs>
+    <linearGradient id={`${uid}-hi`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8ccdf4" />
+      <stop offset="1" stop-color="#4eaae6" />
+    </linearGradient>
+    <linearGradient id={`${uid}-light`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7cc4f1" />
+      <stop offset="1" stop-color="#4eaae6" />
+    </linearGradient>
+    <linearGradient id={`${uid}-mid`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4eaae6" />
+      <stop offset="1" stop-color="#146bc1" />
+    </linearGradient>
+    <linearGradient id={`${uid}-deep`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#146bc1" />
+      <stop offset="1" stop-color="#2d4794" />
+    </linearGradient>
+    <linearGradient id={`${uid}-red`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c11a12" />
+      <stop offset="1" stop-color="#9f0a09" />
+    </linearGradient>
+  </defs>
+
+  <polygon points="306.5 0.5 405.5 98.5 306.5 197.5 208.5 98.5" fill={`url(#${uid}-hi)`} />
+  <polygon points="202.5 104.5 302.5 202.5 202.5 301.5 104.5 202.5" fill={`url(#${uid}-mid)`} />
+  <polygon points="98.5 208.5 198.5 306.5 98.5 405.5 0.5 306.5" fill={`url(#${uid}-deep)`} />
+  <polygon points="308.5 209.5 407.5 308.5 308.5 407.5 209.5 308.5" fill={`url(#${uid}-light)`} />
+  <polygon points="204.5 313.5 303.5 412.5 204.5 511.5 105.5 412.5" fill={`url(#${uid}-deep)`} />
+  <polygon points="308.5 417.5 407.5 516.5 308.5 615.5 209.5 516.5" fill={`url(#${uid}-deep)`} />
+  <polygon points="432.5 116.5 510.5 209.5 416.5 287.5 339.5 193.5" fill={`url(#${uid}-red)`} />
+  <polygon points="430.5 335.5 508.5 421.5 421.5 497.5 345.5 411.5" fill={`url(#${uid}-red)`} />
+  <polygon points="581.5 242.5 627.5 338.5 530.5 383.5 485.5 287.5" fill={`url(#${uid}-red)`} />
 </svg>

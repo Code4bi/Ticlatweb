@@ -1,0 +1,160 @@
+---
+import { getImage } from "astro:assets";
+import pedrito from "../assets/images/pedrito.png";
+import wavingArm from "../assets/images/pedrito-wave-arm.png";
+
+// The open hand, wrist, forearm and sleeve are ONE continuous sprite.
+// Animate it at the shoulder, beneath the unchanged original torso.
+const artwork = await getImage({ src: pedrito, width: 486, format: "webp", quality: 90 });
+const armArtwork = await getImage({ src: wavingArm, width: 610, format: "webp", quality: 90 });
+// Match the sleeve and glove to the opposite arm; keep the shoulder anchored
+// while scaling the complete sprite uniformly, without stretching its anatomy.
+const armScale = 0.45;
+const armFrame = {
+  x: 390 - 1050 * armScale,
+  y: 655 - 750 * armScale,
+  width: wavingArm.width * armScale,
+  height: wavingArm.height * armScale,
+};
+---
+
+<span class="pedrito-greeting" aria-hidden="true">
+  <span class="pedrito-greeting__message">¡Hola! Soy Pedrito<span>¿En qué te puedo ayudar?</span></span>
+  <svg class="pedrito-greeting__character" viewBox="60 45 860 1870" focusable="false">
+    <defs>
+      <image id="pedrito-artwork" href={artwork.src} width="972" height="1960" />
+      <clipPath id="pedrito-body">
+        <path d="M 468,81 C 488,60 557,64 583,82 C 671,111 712,178 714,299 C 734,328 724,357 698,369 L 685,384 C 704,416 677,464 643,467 C 621,498 597,516 580,530 L 611,562 C 668,584 713,601 735,630 L 755,670 L 765,668 L 756,632 C 744,614 736,591 738,567 C 739,533 766,507 800,504 C 843,500 874,528 878,568 C 881,597 862,620 842,641 L 829,676 C 854,689 858,716 852,739 L 844,769 L 859,781 C 894,802 901,846 889,886 C 884,927 856,950 819,949 C 778,945 749,925 731,895 L 712,858 L 704,884 L 715,918 L 710,937 C 740,946 747,971 748,1002 L 756,1062 L 746,1080 L 726,1089 L 713,1084 L 721,1250 L 727,1372 C 737,1407 726,1430 728,1455 L 746,1530 L 743,1567 C 758,1593 761,1617 751,1640 L 748,1660 C 757,1683 747,1691 750,1719 L 735,1730 C 750,1751 761,1766 788,1786 C 826,1808 841,1825 840,1847 L 846,1867 C 835,1888 782,1899 736,1899 C 678,1899 613,1880 577,1855 L 574,1822 L 582,1784 L 581,1739 L 576,1729 L 562,1704 L 567,1656 L 563,1639 C 555,1623 566,1613 574,1600 L 559,1573 L 558,1535 L 552,1470 L 549,1439 L 555,1381 C 533,1301 526,1230 506,1182 C 476,1241 464,1320 448,1383 L 441,1430 L 440,1524 C 445,1554 436,1582 424,1605 L 413,1656 L 417,1698 L 408,1734 L 407,1794 L 410,1820 L 407,1846 C 377,1870 333,1894 290,1897 C 248,1901 192,1889 170,1880 L 167,1862 L 177,1817 C 186,1790 225,1773 239,1753 L 254,1720 L 242,1722 L 240,1681 L 249,1662 C 231,1632 239,1607 252,1590 L 247,1570 C 244,1540 256,1509 260,1475 L 272,1428 C 267,1406 279,1391 282,1374 L 286,1231 L 294,1136 L 294,1104 L 301,1081 L 283,1064 L 280,1020 L 287,956 C 288,934 299,929 310,929 L 300,908 L 309,876 L 300,816 L 314,749 L 338,677 L 357,583 L 400,565 L 421,532 L 430,527 C 406,509 392,488 379,463 C 349,468 325,444 322,408 C 319,390 324,374 328,367 C 301,357 300,333 314,308 C 320,196 366,111 468,81 Z" />
+      </clipPath>
+      <clipPath id="pedrito-wave-arm" clipPathUnits="objectBoundingBox">
+        <path transform="scale(0.0008203445 0.0007751938)" d="M 300,40 C 328,37 340,58 347,96 L 356,177 L 365,244 L 369,279 L 375,282 L 391,192 L 399,133 C 401,101 418,82 437,84 C 466,88 473,115 472,148 L 470,210 L 459,296 C 450,338 450,372 470,399 L 495,376 C 512,345 551,319 577,319 C 608,316 623,337 617,357 C 609,376 582,393 562,415 L 534,451 L 511,493 C 504,510 478,530 447,563 L 451,581 C 457,592 464,608 462,622 L 455,639 C 476,646 486,659 494,679 L 509,712 C 530,727 540,750 548,776 L 561,798 C 583,805 603,823 615,835 L 657,814 C 687,783 718,765 754,753 C 811,685 870,631 939,602 C 982,584 1027,576 1061,576 C 1118,572 1152,619 1171,683 C 1192,749 1191,808 1182,854 C 1176,909 1152,947 1115,963 C 1094,973 1065,972 1043,969 L 1007,989 L 948,1032 C 892,1067 825,1096 770,1124 L 703,1156 C 645,1187 596,1204 555,1208 C 516,1212 482,1190 458,1169 C 414,1132 384,1086 357,1042 C 320,982 307,938 291,890 L 263,809 C 251,780 241,756 248,739 L 264,715 L 257,694 C 238,687 225,675 225,659 L 223,628 C 221,610 211,599 211,586 L 213,571 C 183,543 171,505 161,461 L 151,419 C 143,402 143,387 144,373 L 126,339 L 102,289 C 83,255 64,217 75,196 C 87,175 109,176 126,192 C 145,211 155,236 169,264 L 201,316 L 205,316 L 185,242 L 164,161 C 153,132 150,111 162,99 C 180,79 204,81 218,101 C 235,126 242,153 249,184 L 274,278 L 281,286 L 276,206 L 270,131 C 267,99 260,76 275,54 C 281,46 290,40 300,40 Z" />
+      </clipPath>
+    </defs>
+    <g class="pedrito-greeting__pose">
+      <!-- The torso occludes the rounded shoulder cap at every wave angle. -->
+      <g class="pedrito-greeting__arm">
+        <image href={armArtwork.src} {...armFrame} clip-path="url(#pedrito-wave-arm)" />
+      </g>
+      <use href="#pedrito-artwork" clip-path="url(#pedrito-body)" />
+    </g>
+  </svg>
+</span>
+
+<style>
+  .pedrito-greeting {
+    position: absolute;
+    bottom: 0;
+    right: -8px;
+    width: 146px;
+    height: 300px;
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: calc(100% - 36px) calc(100% - 28px);
+    pointer-events: none;
+  }
+
+  .pedrito-greeting__character {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 126px;
+    height: 274px;
+    overflow: visible;
+    pointer-events: auto;
+    filter: drop-shadow(0 7px 6px rgb(20 35 65 / 18%));
+  }
+
+  .pedrito-greeting__message {
+    position: absolute;
+    right: 18px;
+    bottom: 285px;
+    width: max-content;
+    padding: 12px 17px;
+    border: 1px solid #e1e8ef;
+    border-radius: 16px 16px 4px 16px;
+    background: #fff;
+    color: #233b77;
+    box-shadow: 0 6px 24px rgb(20 35 65 / 12%);
+    font-family: var(--font-body, sans-serif);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .pedrito-greeting__message span {
+    display: block;
+    color: #58657a;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .pedrito-greeting__arm {
+    transform-box: view-box;
+    /* View-box begins at (60, 45); shoulder pivot is (390, 655). */
+    transform-origin: 330px 610px;
+  }
+
+  .pedrito-greeting__pose {
+    transform-box: view-box;
+    transform-origin: 430px 1805px;
+  }
+
+  :global(.whatsapp-fab.is-greeting) .pedrito-greeting {
+    animation: pedrito-appearance 4.6s both;
+  }
+
+  :global(.whatsapp-fab.is-greeting) .pedrito-greeting__arm {
+    animation: pedrito-wave 4.6s cubic-bezier(0.45, 0, 0.35, 1) both;
+  }
+
+  :global(.whatsapp-fab.is-greeting) .pedrito-greeting__pose {
+    animation: pedrito-balance 4.6s ease-in-out both;
+  }
+
+  :global(.whatsapp-fab.is-greeting) .pedrito-greeting__message {
+    animation: pedrito-message 4.6s both;
+  }
+
+  @keyframes pedrito-appearance {
+    0%, 5% { opacity: 0; visibility: visible; transform: scale(0.12) translateY(15px); }
+    17% { opacity: 1; transform: scale(1.015) translateY(-2px); }
+    23%, 77% { opacity: 1; visibility: visible; transform: scale(1) translateY(0); }
+    91%, 100% { opacity: 0; visibility: hidden; transform: scale(0.12) translateY(15px); }
+  }
+
+  @keyframes pedrito-wave {
+    0%, 10% { transform: rotate(-8deg); }
+    22% { transform: rotate(7deg); }
+    32% { transform: rotate(-5deg); }
+    42% { transform: rotate(6deg); }
+    52% { transform: rotate(-4deg); }
+    62% { transform: rotate(4deg); }
+    72% { transform: rotate(-2deg); }
+    80%, 100% { transform: rotate(0deg); }
+  }
+
+  @keyframes pedrito-balance {
+    0%, 12%, 80%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-0.6deg); }
+    42% { transform: rotate(0.25deg); }
+    60% { transform: rotate(-0.25deg); }
+  }
+
+  @keyframes pedrito-message {
+    0%, 19% { opacity: 0; transform: translateY(8px) scale(0.95); }
+    27%, 72% { opacity: 1; transform: translateY(0) scale(1); }
+    80%, 100% { opacity: 0; transform: translateY(4px) scale(0.95); }
+  }
+
+  @media (max-width: 600px) {
+    .pedrito-greeting { width: 124px; height: 246px; }
+    .pedrito-greeting__character { width: 104px; height: 226px; }
+    .pedrito-greeting__message { bottom: 236px; right: 12px; font-size: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pedrito-greeting { display: none; }
+  }
+
+</style>

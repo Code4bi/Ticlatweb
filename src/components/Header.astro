@@ -1,5 +1,7 @@
 ---
 import BrandMark from "./BrandMark.astro";
+import { Image } from "astro:assets";
+import quoteInvertedIcon from "../assets/images/icon-quote-inverted.png";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -23,7 +25,7 @@ const navItems = [
     </nav>
 
     <div class="nav-actions">
-      <a class="nav-cta" href="#contacto">Cotizar proyecto <span aria-hidden="true">↗</span></a>
+      <a class="nav-cta" href="#contacto">Cotizar proyecto <Image class="quote-icon-inverted" src={quoteInvertedIcon} alt="" width={48} height={48} /></a>
       <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span>
       </button>
@@ -33,7 +35,7 @@ const navItems = [
   <nav id="mobile-menu" class="mobile-menu" aria-label="Navegación móvil" aria-hidden="true">
     <ul>
       {navItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
-      <li><a class="mobile-menu__cta" href="#contacto">Cotizar proyecto <span aria-hidden="true">↗</span></a></li>
+      <li><a class="mobile-menu__cta" href="#contacto">Cotizar proyecto <Image class="quote-icon-inverted" src={quoteInvertedIcon} alt="" width={48} height={48} /></a></li>
     </ul>
   </nav>
 </header>

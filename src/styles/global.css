@@ -113,7 +113,7 @@ button { cursor: pointer; }
 .hero { position: relative; display: flex; min-height: min(900px, 100svh); align-items: center; isolation: isolate; overflow: hidden; background: var(--ink-deep); color: white; }
 .hero__image, .hero__overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero__image { z-index: -3; object-fit: cover; object-position: center; animation: hero-in 1.3s ease both; }
-.hero__overlay { z-index: -2; background: linear-gradient(90deg, rgba(13,25,60,.38) 0%, rgba(16,30,68,.30) 36%, rgba(12,22,52,.10) 76%), linear-gradient(0deg, rgba(13,25,60,.58) 0%, transparent 50%); }
+.hero__overlay { z-index: -2; background: linear-gradient(90deg, rgba(13,25,60,.70) 0%, rgba(16,30,68,.48) 36%, rgba(12,22,52,.14) 76%), linear-gradient(0deg, rgba(13,25,60,.68) 0%, transparent 50%); }
 .hero__technical { position: absolute; top: 144px; right: 5.8%; display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.58); font-size: 8px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; writing-mode: vertical-rl; }
 .hero__technical-line { width: 1px; height: 96px; background: rgba(255,255,255,.4); }
 .hero__rail { position: absolute; bottom: 111px; left: 3%; display: flex; gap: 12px; color: rgba(255,255,255,.56); font-size: 8px; font-weight: 700; letter-spacing: .18em; writing-mode: vertical-rl; }

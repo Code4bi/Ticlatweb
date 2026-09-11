@@ -76,6 +76,7 @@ button { cursor: pointer; }
 .site-header.is-scrolled .nav-shell { background: rgba(255,255,255,.96); box-shadow: 0 12px 30px rgba(19, 31, 69, .16); }
 
 .brand { display: inline-flex; align-items: center; gap: 11px; flex: 0 0 auto; }
+.brand-logo { display: block; width: 150px; height: auto; flex: 0 0 auto; }
 .brand-mark { display: block; width: auto; height: 31px; flex: 0 0 auto; }
 .brand-type { display: flex; flex-direction: column; gap: 0; }
 /* Logotipo: el degradado del manual recorre la palabra de azul profundo a
@@ -299,10 +300,11 @@ h2 { margin: 0; color: var(--ink); font-family: var(--font-heading); font-size: 
 .site-footer { position: relative; overflow: hidden; padding: 92px 0 0; background: var(--ink-deep); color: rgba(255,255,255,.68); }
 .footer-gridline { position: absolute; inset: 0; opacity: .07; background-image: linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: linear-gradient(90deg, #000, transparent 75%); pointer-events: none; }
 .footer-inner { position: relative; display: grid; grid-template-columns: 1.6fr .7fr 1fr; gap: 8%; width: var(--container); margin-inline: auto; padding-bottom: 75px; }
-.brand--footer .brand-type strong { background: none; color: white; -webkit-text-fill-color: white; }.brand--footer .brand-type small { color: rgba(255,255,255,.45); }
 .footer-main > p { max-width: 270px; margin: 26px 0 29px; color: white; font-family: var(--font-heading); font-size: clamp(20px, 2vw, 28px); font-weight: 700; letter-spacing: -.02em; line-height: 1.06; }
 .footer-email { display: inline-flex; align-items: center; gap: 16px; color: var(--blue-light); font-family: var(--font-heading); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.brand--footer .brand-logo { width: 220px; }
 .footer-email span { font-size: 17px; }.footer-label { margin: 2px 0 20px; color: var(--blue-light); font-family: var(--font-heading); font-size: 9px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.footer-social { margin-top: 34px; }.footer-social .footer-label { margin-bottom: 14px; }.footer-social__links { display: flex; flex-wrap: wrap; gap: 11px 20px; }.footer-social__links a { display: inline-flex; align-items: center; gap: 9px; color: rgba(255,255,255,.68); font-family: var(--font-heading); font-size: 12px; font-weight: 700; letter-spacing: .04em; transition: color .2s ease, transform .2s ease; }.footer-social__links a:hover { color: white; transform: translateY(-2px); }.footer-social__links svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }.footer-social__links a:nth-child(3) svg, .footer-social__links a:nth-child(4) svg { fill: currentColor; stroke: none; }.footer-social__dot { fill: currentColor; stroke: none; }
 .footer-column nav { display: flex; flex-direction: column; gap: 12px; }.footer-column nav a { width: max-content; color: rgba(255,255,255,.62); font-size: 13px; transition: color .2s ease, transform .2s ease; }.footer-column nav a:hover { color: white; transform: translateX(4px); }
 .footer-copy { max-width: 220px; margin: 0 0 17px; color: rgba(255,255,255,.53); font-size: 13px; line-height: 1.7; }
 .footer-bottom { position: relative; display: flex; justify-content: space-between; gap: 20px; width: var(--container); margin-inline: auto; padding: 19px 0 24px; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.46); font-family: var(--font-heading); font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
@@ -334,7 +336,7 @@ h2 { margin: 0; color: var(--ink); font-family: var(--font-heading); font-size: 
 
 @media (max-width: 620px) {
   :root { --container: calc(100% - 38px); }
-  .site-header { top: 10px; padding-inline: 10px; }.nav-shell { padding-left: 14px; }.brand-type small { display: none; }.brand-type strong { font-size: 15px; }.brand-mark { height: 27px; }
+  .site-header { top: 10px; padding-inline: 10px; }.nav-shell { padding-left: 14px; }.brand-logo { width: 125px; }.brand-mark { height: 27px; }.brand--footer .brand-logo { width: 190px; }
   .hero { min-height: 760px; align-items: flex-end; }.hero__image { object-position: 61% center; }.hero__overlay { background: linear-gradient(90deg, rgba(13,25,60,.92), rgba(13,25,60,.36)), linear-gradient(0deg, rgba(13,25,60,.9), transparent 70%); }.hero__content { padding-bottom: 116px; }.hero h1 { font-size: clamp(39px, 11.7vw, 74px); }.hero__intro { font-size: 15px; }.hero__actions { flex-wrap: wrap; gap: 21px; }.hero__technical { top: 108px; right: 14px; font-size: 7px; }.hero__bottom { bottom: 25px; }
   .trust-strip__inner { grid-template-columns: 1fr 1fr; }.trust-strip__inner > div, .trust-strip__inner > div:first-child { min-height: 92px; padding: 16px 10px; border-bottom: 1px solid var(--line); font-size: 8px; }.trust-strip__inner > div:nth-child(2) { border-right: 0; }.trust-strip__inner > div:nth-child(3), .trust-strip__inner > div:nth-child(4) { border-bottom: 0; }.trust-strip__number { font-size: 26px; }
   .clients-strip__head { display: block; }.clients-strip__head > p:last-child { margin-top: 8px; }.clients-track { grid-auto-columns: calc((100% - 16px) / 2); }.client-logo { height: 76px; padding: 8px 12px; }

@@ -1,7 +1,7 @@
 ---
-import BrandMark from "./BrandMark.astro";
 import { Image } from "astro:assets";
 import quoteInvertedIcon from "../assets/images/icon-quote-inverted.png";
+import ticlatLogo from "../assets/images/ticlat-logo-official.png";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -14,8 +14,7 @@ const navItems = [
 <header class="site-header" data-site-header>
   <div class="nav-shell">
     <a class="brand" href="#inicio" aria-label="TICLAT, ir al inicio">
-      <BrandMark class="brand-mark" />
-      <span class="brand-type"><strong>TICLAT</strong><small>ingeniería &amp; infraestructura</small></span>
+      <Image class="brand-logo" src={ticlatLogo} alt="TICLAT" width={280} height={70} />
     </a>
 
     <nav class="desktop-nav" aria-label="Navegación principal">
